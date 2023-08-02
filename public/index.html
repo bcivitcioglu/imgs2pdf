@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image to PDF Converter</title>
+    <link rel="icon" href="/logos/favicon.png" type="image/png" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <!-- Add jQuery here -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body
+    class="d-flex align-items-center justify-content-center"
+    style="height: 100vh; background-color: #f9f9f9; overflow: auto"
+  >
+    <div
+      class="container border p-4 shadow-sm"
+      style="
+        width: 50%;
+        background-color: #ffffff;
+        margin: auto;
+        min-height: 100vh;
+      "
+    >
+      <div class="text-center mb-4">
+        <img
+          id="logo"
+          src="/logos/logo_main.png"
+          class="img-fluid"
+          style="max-width: 30%"
+          alt="Logo"
+        />
+      </div>
+      <p style="text-align: justify; text-justify: inter-word">
+        Welcome to our online Image to PDF Converter, where transforming your
+        PNG, JPG or HEIC images into PDFs has never been easier! Whether you
+        need to merge multiple images into a single PDF or create separate PDFs,
+        our user-friendly tool has got you covered. With a simple drag-and-drop
+        interface, converting and organizing your images has never been quicker.
+        Read on to discover how our converter streamlines the process, making it
+        hassle-free for all users!
+      </p>
+
+      <form id="uploadForm" enctype="multipart/form-data">
+        <button
+          type="button"
+          id="removeAllButton"
+          class="btn btn-outline-danger mb-1 btn-sm"
+          disabled
+        >
+          Remove All
+        </button>
+        <div
+          id="fileCountProgressBarContainer"
+          class="progress mb-0"
+          style="height: 2px"
+        >
+          <div
+            id="fileCountProgressBar"
+            class="progress-bar"
+            role="progressbar"
+            style="width: 0"
+          ></div>
+        </div>
+        <div
+          id="dropzone"
+          class="border p-3 mb-3"
+          style="
+            height: 300px;
+            overflow: auto;
+            background-color: rgb(233, 233, 233);
+            position: relative;
+          "
+        >
+          <div
+            id="thumbnails"
+            class="d-flex flex-wrap justify-content-between"
+          ></div>
+          <div
+            id="dropText"
+            class="d-flex align-items-center justify-content-center text-muted"
+            style="
+              position: absolute;
+              top: 0;
+              width: calc(
+                100% - 2 * 1.5rem
+              ); /* Subtract the left and right padding (1.5rem each) */
+              height: 100%;
+              user-select: none;
+            "
+          >
+            Click or drop files here
+          </div>
+
+          <input
+            type="file"
+            id="fileInput"
+            name="images"
+            multiple
+            style="display: none"
+            accept="image/*"
+          />
+        </div>
+        <div class="custom-control custom-switch">
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            id="mergeInput"
+            name="merge"
+          />
+          <label class="custom-control-label" for="mergeInput"
+            >Merge into one PDF</label
+          >
+        </div>
+      </form>
+      <div
+        id="conversionProgressBarContainer"
+        class="progress mb-3"
+        style="height: 5px"
+      >
+        <div
+          id="conversionProgressBar"
+          class="progress-bar"
+          role="progressbar"
+          style="width: 0"
+        ></div>
+      </div>
+      <p id="status">Waiting for upload...</p>
+
+      <div class="row button-container">
+        <div class="col-6">
+          <button
+            type="button"
+            id="convertButton"
+            class="btn btn-primary btn-lg btn-block mb-3"
+            disabled
+          >
+            Convert
+          </button>
+        </div>
+        <div class="col-6">
+          <button
+            id="downloadButton"
+            class="btn btn-success btn-lg btn-block mb-3"
+            disabled
+          >
+            Download
+          </button>
+        </div>
+      </div>
+      <script src="/js/script.js"></script>
+      <div style="text-align: justify; text-justify: inter-word">
+        <h2>Key Features</h2>
+        <ol>
+          <li>
+            Convert Multiple Images at Once: Our Image to PDF Converter lets you
+            convert multiple images in one go! Whether you have a handful of
+            images or a large batch, simply select or drag your files, and our
+            tool will process them swiftly, saving you precious time.
+          </li>
+          <li>
+            Arrange Images Effortlessly: Arrange your images exactly how you
+            want them to appear in the final PDF. Drag and drop images to
+            rearrange their order, ensuring that your PDF tells your story the
+            way you envision it.
+          </li>
+          <li>
+            Merge or Keep Separate: Tailor your PDF according to your
+            preferences! You can choose to merge all the images into a single
+            PDF file for seamless navigation, or you can opt to create separate
+            PDFs for each image for better organization.
+          </li>
+        </ol>
+
+        <h2>How It Works</h2>
+        <ol>
+          <strong> <li>Upload or Drag Your Images:</li></strong>
+          Choose the image files you want to convert into PDF or simply drag and
+          drop them onto our converter. You can select as many images as you
+          need, and our tool will process them all together.
+
+          <strong> <li>Organize Your Images:</li></strong>
+          Want to change the order of images in the PDF? No problem! Just drag
+          and drop the images into the desired sequence. Our real-time preview
+          ensures you have full control over your final document.
+
+          <strong> <li>Select Your Conversion Option</li></strong>
+          Decide whether you want to merge all images into a single PDF or keep
+          them as separate files. Make your selection and hit the "Convert"
+          button.
+
+          <strong> <li>Download Your PDF</li></strong>
+          In a matter of seconds, your images will be converted into the PDF
+          format. Click the "Download" button, and your PDF file will be ready
+          for use.
+        </ol>
+
+        <h2>Benefits of Using Our Image to PDF Converter</h2>
+        <ul>
+          <li>
+            Quick and Efficient: Save time and effort with our batch conversion
+            and easy organization features.
+          </li>
+          <li>
+            Versatility: Convert both PNG and JPG images to PDF with seamless
+            compatibility.
+          </li>
+          <li>
+            No Software Installation: Our converter is entirely web-based, so no
+            need to download any software.
+          </li>
+          <li>
+            Use our converter on any device with an internet connection, from
+            laptops to smartphones.
+          </li>
+          <li>
+            Security: Your files are securely processed, and all data is cleared
+            once the conversion is complete.
+          </li>
+          <li>
+            Free to Use: Our basic image to PDF conversion service is completely
+            free for all users.
+          </li>
+        </ul>
+
+        <h2>Conclusion</h2>
+
+        <p>
+          Say goodbye to complicated image-to-PDF conversions! With our Image to
+          PDF Converter, you can effortlessly convert, merge, and organize your
+          images exactly how you want them. Whether you need a single merged PDF
+          or separate PDFs, our user-friendly interface makes the process smooth
+          and efficient. Experience the convenience of our online tool today,
+          and start transforming your images into PDFs hassle-free!
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
