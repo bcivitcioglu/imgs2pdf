@@ -217,9 +217,9 @@ convertButton.addEventListener('click', function() {
             downloadButton.style.display = 'block';
             statusText.textContent = 'Conversion complete! Ready to download.';
             statusText.style.color = 'green';
-                    } else if (xhr.status === 400) {
-                        const result = JSON.parse(chr.responseText);
-                        statusText.textContent = result.error;
+                    } else {
+                        const result = JSON.parse(xhr.responseText);
+                        statusText.textContent = 'Error: ' + result.error;
                         statusText.style.color = 'red';
                     }
     };

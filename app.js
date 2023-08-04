@@ -73,6 +73,7 @@ app.post('/upload', upload.array('images', 30), async (req, res) => {
     const convertImageToPdfPage = async (doc, imagePath, isFirstImage) => {
         console.log(`Converting image at ${imagePath}...`);
         // If the image is a HEIC image, convert it to JPEG first
+        let imageSize; // declare imageSize here
         let isHeic = path.extname(imagePath).toLowerCase() === '.heic';
 
         if (isHeic) {
@@ -94,13 +95,21 @@ app.post('/upload', upload.array('images', 30), async (req, res) => {
         }
         console.log(`Probing image at ${imagePath}...`);
         try {
-            const imageSize = await probe(fs.createReadStream(imagePath));
+            imageSize = await probe(fs.createReadStream(imagePath)); // Assign a value to imageSize here
+            console.log(`imageSize: ${imageSize}`); // Log imageSize here
+
         } catch (err) {
             console.error(`Failed to process image at ${imagePath}:`, err);
             // Handle the error: send a response, skip the file, etc.
             fs.unlinkSync(imagePath); // Immediately delete the invalid file
             throw new Error(`${path.basename(imagePath)} is not an image file or not one of our supported files.`);        
         }
+
+        if (!imageSize) {
+            // If imageSize is not defined, throw an error to stop the execution
+            throw new Error('Failed to probe image size');
+        }
+    
     
         const pdfWidth = doc.page.width - doc.page.margins.left - doc.page.margins.right;
         const pdfHeight = doc.page.height - doc.page.margins.top - doc.page.margins.bottom;
