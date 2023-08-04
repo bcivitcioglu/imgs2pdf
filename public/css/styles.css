@@ -10,7 +10,8 @@
     align-items: center;
     text-align: center;
     margin-bottom: 10px;
-    overflow: auto; 
+    
+    
 }
 
 #thumbnails {
@@ -58,7 +59,7 @@ body {
     display: flex;
     flex-direction: column;
     /* Change min-height to height and set to 100vh */
-    overflow: auto;
+    
 }
 
 #logo {
@@ -90,3 +91,16 @@ body {
 }
 
 
+.content-below {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    clear: both;
+    width: 50%; /* Adjust this value to get the desired width */
+    padding: 20px; /* This is top and bottom padding */
+    padding-left: 100px; /* This is left padding */
+    padding-right: 100px; /* This is right padding */
+    text-align: center;
+    
+  }
+  

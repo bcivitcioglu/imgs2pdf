@@ -93,8 +93,14 @@ app.post('/upload', upload.array('images', 30), async (req, res) => {
 
         }
         console.log(`Probing image at ${imagePath}...`);
-        const imageSize = await probe(fs.createReadStream(imagePath));
-
+        try {
+            const imageSize = await probe(fs.createReadStream(imagePath));
+        } catch (err) {
+            console.error(`Failed to process image at ${imagePath}:`, err);
+            // Handle the error: send a response, skip the file, etc.
+            fs.unlinkSync(imagePath); // Immediately delete the invalid file
+            throw new Error(`${path.basename(imagePath)} is not an image file or not one of our supported files.`);        
+        }
     
         const pdfWidth = doc.page.width - doc.page.margins.left - doc.page.margins.right;
         const pdfHeight = doc.page.height - doc.page.margins.top - doc.page.margins.bottom;
@@ -128,7 +134,7 @@ app.post('/upload', upload.array('images', 30), async (req, res) => {
         doc.image(imagePath, x, y, {width: width, height: height});
     };
     
-
+    try{
     if (mergePDFs) {
         const doc = new PDFDocument();
         const uniqueFilename = 'merged' + delimiter + Date.now() + '.pdf';
@@ -170,6 +176,9 @@ app.post('/upload', upload.array('images', 30), async (req, res) => {
         }
 
         res.send({ pdfs: pdfs.map(pdf => path.basename(pdf)) });
+    }} catch (err){
+        console.error(err);
+        res.status(400).json({error:err.message});
     }
 });
 

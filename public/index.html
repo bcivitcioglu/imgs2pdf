@@ -2,6 +2,28 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <meta
+      name="images to pdf converter"
+      content="This page converts jpg, jpeg, png and heic into pdf files."
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Image to PDF Converter",
+        "operatingSystem": "All",
+        "applicationCategory": "MultimediaApplication",
+        "description": "A web application that converts jpeg, png, jpg, heic files to PDF files",
+        "offers": {
+          "@type": "Offer",
+          "price": "0.00",
+          "priceCurrency": "USD"
+        },
+        "browserRequirements": "Requires JavaScript and a modern web browser",
+        "softwareVersion": "1.0",
+        "url": "https://www.imgs2pdf.com"
+      }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image to PDF Converter</title>
     <link rel="icon" href="/logos/favicon.png" type="image/png" />
@@ -13,10 +35,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
   </head>
-  <body
-    class="d-flex align-items-center justify-content-center"
-    style="height: 100vh; background-color: #f9f9f9; overflow: auto"
-  >
+  <body class="body" style="height: 100vh; background-color: #f9f9f9">
     <div
       class="container border p-4 shadow-sm"
       style="
@@ -24,6 +43,7 @@
         background-color: #ffffff;
         margin: auto;
         min-height: 100vh;
+        flex-direction: column;
       "
     >
       <div class="text-center mb-4">
@@ -37,12 +57,11 @@
       </div>
       <p style="text-align: justify; text-justify: inter-word">
         Welcome to our online Image to PDF Converter, where transforming your
-        PNG, JPG or HEIC images into PDFs has never been easier! Whether you
-        need to merge multiple images into a single PDF or create separate PDFs,
-        our user-friendly tool has got you covered. With a simple drag-and-drop
-        interface, converting and organizing your images has never been quicker.
-        Read on to discover how our converter streamlines the process, making it
-        hassle-free for all users!
+        PNG, JPG, JPEG or HEIC images into PDF files has never been easier!
+        Whether you need to merge multiple images into a single PDF or create
+        separate PDFs, our user-friendly tool has got you covered. With a simple
+        drag-and-drop interface, converting and organizing your images has never
+        been quicker.
       </p>
 
       <form id="uploadForm" enctype="multipart/form-data">
@@ -93,7 +112,7 @@
               user-select: none;
             "
           >
-            Click or drop files here
+            Click or drop images (jpeg, png, HEIC) here
           </div>
 
           <input
@@ -152,92 +171,105 @@
           </button>
         </div>
       </div>
-      <script src="/js/script.js"></script>
-      <div style="text-align: justify; text-justify: inter-word">
-        <h2>Key Features</h2>
-        <ol>
-          <li>
-            Convert Multiple Images at Once: Our Image to PDF Converter lets you
-            convert multiple images in one go! Whether you have a handful of
-            images or a large batch, simply select or drag your files, and our
-            tool will process them swiftly, saving you precious time.
-          </li>
-          <li>
-            Arrange Images Effortlessly: Arrange your images exactly how you
-            want them to appear in the final PDF. Drag and drop images to
-            rearrange their order, ensuring that your PDF tells your story the
-            way you envision it.
-          </li>
-          <li>
-            Merge or Keep Separate: Tailor your PDF according to your
-            preferences! You can choose to merge all the images into a single
-            PDF file for seamless navigation, or you can opt to create separate
-            PDFs for each image for better organization.
-          </li>
-        </ol>
+    </div>
 
-        <h2>How It Works</h2>
-        <ol>
-          <strong> <li>Upload or Drag Your Images:</li></strong>
-          Choose the image files you want to convert into PDF or simply drag and
-          drop them onto our converter. You can select as many images as you
-          need, and our tool will process them all together.
+    <script src="/js/script.js"></script>
 
-          <strong> <li>Organize Your Images:</li></strong>
-          Want to change the order of images in the PDF? No problem! Just drag
-          and drop the images into the desired sequence. Our real-time preview
-          ensures you have full control over your final document.
+    <div
+      class="content-below"
+      style="
+        display: grid;
+        place-items: center; /* This will center the text both vertically and horizontally */
+        padding: 8rem; /* Adjust as needed */
+        width: 80%; /* Adjust as needed */
+        margin: 0 auto; /* This will center the element itself */
+        text-align: justify;
+        text-justify: inter-word;
+      "
+    >
+      <h2>Key Features</h2>
+      <ol>
+        <li>
+          Convert Multiple Images at Once: Our Image to PDF Converter lets you
+          convert multiple images in one go! Whether you have a handful of png,
+          jpg, jpeg, heic files or a large batch, simply select or drag your
+          files, and our tool will process them swiftly, saving you precious
+          time.
+        </li>
+        <li>
+          Arrange Images Effortlessly: Arrange your images exactly how you want
+          them to appear in the final PDF. Drag and drop images to rearrange
+          their order, ensuring that your PDF tells your story the way you
+          envision it.
+        </li>
+        <li>
+          Merge or Keep Separate: Tailor your PDF according to your preferences!
+          You can choose to merge all the images (jpg, jpeg, png, heic) into a
+          single PDF file for seamless navigation, or you can opt to create
+          separate PDFs for each image for better organization.
+        </li>
+      </ol>
 
-          <strong> <li>Select Your Conversion Option</li></strong>
-          Decide whether you want to merge all images into a single PDF or keep
-          them as separate files. Make your selection and hit the "Convert"
-          button.
+      <h2>How It Works</h2>
+      <ol>
+        <strong> <li>Upload or Drag Your Images:</li></strong>
+        Choose the image files you want to convert into PDF or simply drag and
+        drop them onto our converter. You can select as many images (jpg, jpeg,
+        png, heic) as you need, and our tool will process them all together.
 
-          <strong> <li>Download Your PDF</li></strong>
-          In a matter of seconds, your images will be converted into the PDF
-          format. Click the "Download" button, and your PDF file will be ready
-          for use.
-        </ol>
+        <strong> <li>Organize Your Images:</li></strong>
+        Want to change the order of images in the PDF? No problem! Just drag and
+        drop the images into the desired sequence. Our real-time preview ensures
+        you have full control over your final document.
 
-        <h2>Benefits of Using Our Image to PDF Converter</h2>
-        <ul>
-          <li>
-            Quick and Efficient: Save time and effort with our batch conversion
-            and easy organization features.
-          </li>
-          <li>
-            Versatility: Convert both PNG and JPG images to PDF with seamless
-            compatibility.
-          </li>
-          <li>
-            No Software Installation: Our converter is entirely web-based, so no
-            need to download any software.
-          </li>
-          <li>
-            Use our converter on any device with an internet connection, from
-            laptops to smartphones.
-          </li>
-          <li>
-            Security: Your files are securely processed, and all data is cleared
-            once the conversion is complete.
-          </li>
-          <li>
-            Free to Use: Our basic image to PDF conversion service is completely
-            free for all users.
-          </li>
-        </ul>
+        <strong> <li>Select Your Conversion Option</li></strong>
+        Decide whether you want to merge all images into a single PDF or keep
+        them as separate files. Make your selection and hit the "Convert"
+        button.
 
-        <h2>Conclusion</h2>
+        <strong> <li>Download Your PDF</li></strong>
+        In a matter of seconds, your images (jpg, jpeg, png, heic) will be
+        converted into the PDF format. Click the "Download" button, and your PDF
+        file will be ready for use.
+      </ol>
 
-        <p>
-          Say goodbye to complicated image-to-PDF conversions! With our Image to
-          PDF Converter, you can effortlessly convert, merge, and organize your
-          images exactly how you want them. Whether you need a single merged PDF
-          or separate PDFs, our user-friendly interface makes the process smooth
-          and efficient. Experience the convenience of our online tool today,
-          and start transforming your images into PDFs hassle-free!
-        </p>
-      </div>
+      <h2>Benefits of Using Our Image to PDF Converter</h2>
+      <ul>
+        <li>
+          Quick and Efficient: Save time and effort with our batch conversion
+          and easy organization features.
+        </li>
+        <li>
+          Versatility: Convert both PNG, JPG, JPEG and HEIC images to PDF with
+          seamless compatibility.
+        </li>
+        <li>
+          No Software Installation: Our converter is entirely web-based, so no
+          need to download any software. Free to use.
+        </li>
+        <li>
+          Use our converter on any device with an internet connection, from
+          laptops to smartphones.
+        </li>
+        <li>
+          Security: Your files are securely processed, and all data is cleared
+          once the conversion is complete.
+        </li>
+        <li>
+          Free to Use: Our basic image to PDF conversion service is completely
+          free for all users.
+        </li>
+      </ul>
+
+      <p>
+        Say goodbye to complicated image-to-PDF conversions! With our Image to
+        PDF Converter, you can effortlessly convert, merge, and organize your
+        JPG, JPEG, PNG and HEIC images exactly how you want them. Whether you
+        need a single merged PDF or separate PDFs, our user-friendly interface
+        makes the process smooth and efficient. Experience the convenience of
+        our online tool today, and start transforming your images into PDFs
+        hassle-free!
+      </p>
     </div>
   </body>
 </html>

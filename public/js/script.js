@@ -65,6 +65,11 @@ function addFiles(files) {
         return;
     }
     Array.from(files).forEach(file => {
+        // only allow image file types
+        if (!file.type.startsWith('image/')) {
+            alert('Only image files are allowed');
+            return;
+        }
         if (allFiles.length < maxFiles) {
             allFiles.push(file);
 
@@ -99,7 +104,7 @@ function addFiles(files) {
                   removeAllButton.disabled = allFiles.length === 0;
                   downloadButton.disabled = allFiles.length === 0;
                   if (allFiles.length===0){
-                    dropText.textContent = 'Click or drop files here';
+                    dropText.textContent = 'Click or drop images (jpeg, png, HEIC) here';
                   }
                   updateFileCountProgressBar();
                   conversionProgress = 0;
@@ -212,6 +217,10 @@ convertButton.addEventListener('click', function() {
             downloadButton.style.display = 'block';
             statusText.textContent = 'Conversion complete! Ready to download.';
             statusText.style.color = 'green';
+                    } else if (xhr.status === 400) {
+                        const result = JSON.parse(chr.responseText);
+                        statusText.textContent = result.error;
+                        statusText.style.color = 'red';
                     }
     };
         xhr.send(formData);
@@ -234,7 +243,7 @@ removeAllButton.addEventListener('click', function() {
     });
     statusText.textContent = 'No files selected';
     statusText.style.color = 'blue';
-    dropText.textContent = 'Click or drop files here';
+    dropText.textContent = 'Click or drop images (jpeg, png, HEIC) here';
 });
 
 mergeInput.addEventListener('change', function() {
