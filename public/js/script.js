@@ -1,4 +1,3 @@
-console.log("script.js is loaded");
 
 // Select the file input, dropzone, checkbox and buttons
 const fileInput = document.getElementById('fileInput');
@@ -178,15 +177,16 @@ convertButton.addEventListener('click', function() {
             getConversionProgress();
     
             const result = JSON.parse(xhr.responseText);
-            console.log(result);
+//            console.log(result);
 
             downloadButton.onclick = function() {
                 if (downloadButton.disabled) {
                     return;
                 }
                 // Check if the file exists before starting the download
-                fetch(`/check-file?filePath=${encodeURIComponent('pdfs/' + result.pdfs[0])}`)
-                    .then(response => response.json())
+               // console.log("Checking path:", `/check-file?filePath=${encodeURIComponent('pdfs/' + result.pdfs[0])}`);
+                fetch(`/check-file?filePath=${encodeURIComponent(result.pdfs[0])}`)
+                .then(response => response.json())
                     .then(data => {
                         if (data.fileExists) {
                             // If the file exists, start the download
@@ -196,8 +196,9 @@ convertButton.addEventListener('click', function() {
                                     const url = window.URL.createObjectURL(blob);
                                     const a = document.createElement('a');
                                     a.href = url;
-                                    a.download = result.pdfs.length > 1 ? 'pdfs.zip' : result.pdfs[0];
-                                    a.click();
+                                    const originalFileName = result.pdfs[0].split('/').pop();
+                                    a.download = result.pdfs.length > 1 ? 'pdfs.zip' : originalFileName.replace(/\..+$/, '') + '.pdf';
+                                                                        a.click();
                                 })
                                 .catch(error => {
                                     console.error('Error in fetch:', error);
@@ -254,7 +255,6 @@ mergeInput.addEventListener('change', function() {
 const getConversionProgress = () => {
     fetch('/progress')
         .then(response => {
-            console.log('Raw response from /progress:', response);
             return response.json();
         })
         .then(data => {
